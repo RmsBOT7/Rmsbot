@@ -463,6 +463,18 @@ if (text.includes('.nsfwblowjob')){
         })
     })
 }
+if (text.includes('.hentai')){
+  var teks = text.replace(/.hentai /, '')
+    axios.get(`https://tobz-api.herokuapp.com/api/hentai`).then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
+            conn.sendMessage(id, buf, MessageType.image, { quoted: m })
+        })
+    })
+}
 if (text.includes('.yuri')){
   var teks = text.replace(/.yuri /, '')
     axios.get(`https://api.computerfreaker.cf/v1/yuri`).then((res) => {
@@ -742,13 +754,6 @@ if (text.includes(".resepbunda")){
 const teks = text.replace(/.resepbunda/, "")
 axios.get(`https://mnazria.herokuapp.com/api/resep-search?text=${teks}`).then((res) => {
     let hasil = `${result}`;
-    conn.sendMessage(id, hasil ,MessageType.text);
-})
-}
-if (text.includes(".nhentai")){
-const teks = text.replace(/.nhentai/, "")
-axios.get(`https://mnazria.herokuapp.com/api/nhentai?code=${teks}`).then((res) => {
-    let hasil = `INGET DOSA BORR\n\n${result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
@@ -1746,36 +1751,6 @@ _${kata}_
          });
    }
    
-   if (text.includes(".hentai"))
-   {
-    var items = ["nsfwneko","anime hentai"];
-    var anim = items[Math.floor(Math.random() * items.length)];
-    var url = "https://api.computerfreaker.cf/v1/hentai";
-    
-    axios.get(url)
-      .then((result) => {
-        var b = JSON.parse(JSON.stringify(result.data));
-        var anim =  b[Math.floor(Math.random() * b.length)];
-        imageToBase64(anim) // Path to the image
-        .then(
-            (response) => {
-	var buf = Buffer.from(response, 'base64'); // Ta-da	
-              conn.sendMessage(
-            id,
-              buf,MessageType.image)
-       
-            }
-        )
-        .catch(
-            (error) => {
-                console.log(error); // Logs an error if there was one
-            }
-        )
-    
-    });
-    }
-
-
    
    if (text.includes(".loli"))
    {
@@ -2027,34 +2002,7 @@ if (text.includes(".lirik")){
 	conn.sendMessage(id, hasil, MessageType.text, { quoted: m })
 	})
 }
-if (text.includes(".hentai1"))
-   {
-    var items = ["nsfwhentai", "anime hentai", "hentai", "nsfwneko"];
-    var cewe = items[Math.floor(Math.random() * items.length)];
-    var url = "https://api.fdci.se/rep.php?gambar=" + cewe;
-    
-    axios.get(url)
-      .then((result) => {
-        var b = JSON.parse(JSON.stringify(result.data));
-        var cewek =  b[Math.floor(Math.random() * b.length)];
-        imageToBase64(cewek) // Path to the image
-        .then(
-            (response) => {
-	var buf = Buffer.from(response, 'base64'); // Ta-da	
-              conn.sendMessage(
-            id,
-              buf,MessageType.image, { quoted: m })
-       
-            }
-        )
-        .catch(
-            (error) => {
-                console.log(error); // Logs an error if there was one
-            }
-        )
-    
-    });
-    }
+
 if (text.includes(".meme"))
    {
     var items = ["funny meme", "meme", "meme 2020"];
@@ -2176,7 +2124,7 @@ if (text.includes(".cuaca")){
 const teks = text.replace(/.cuaca /, "")
 axios.get(`http://tobz-cuaca.herokuapp.com/?menu=cuaca&wilayah=${teks}`).then((res) => {
     let hasil = `Tempat : ${res.data.result.tempat}\nCuaca : ${res.data.result.cuaca}\nAngin : ${res.data.result.angin}\nSuhu : ${res.data.result.suhu}\nKelembapan : ${res.data.result.kelembapan}`;
-    conn.sendMessage(id, hasil ,MessageType.text);
+    conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
 })
 }
 if (text.includes(".renungan")){
@@ -2184,7 +2132,7 @@ const teks = text.replace(/.renungan /, "")
 axios.get(`https://docs-jojo.herokuapp.com/api/renungan`).then((res) => {
     conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
     let hasil = `Isi : ${res.data.Isi} \njudul : ${res.data.judul} \npesan : ${res.data.pesan}`;
-    conn.sendMessage(id, hasil ,MessageType.text);
+    conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
 })
 }
 if (text.includes(".joox")){
@@ -2360,24 +2308,11 @@ if (text.includes('.ssweb')){
         })
     })
 }  
-if (text.includes('.ytmp3')){
-  var teks = text.replace(/.ytmp3 /, '')
-    axios.get('https://st4rz.herokuapp.com/api/yta2?url=${teks}')
-    .then((res) => {
-      imageToBase64(res.data.thumb)
-        .then(
-          (ress) => {
-            conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
-            var buf = Buffer.from(ress, 'base64')
-            conn.sendMessage(id, buf, MessageType.image, { quoted: m })
-        })
-    })
-}
 if (text.includes(".ytmp3")){
 const teks = text.replace(/.ytmp3 /, "")
 axios.get(`https://st4rz.herokuapp.com/api/yta2?url=${teks}`).then((res) => {
     let hasil = `Audio telah tersedia pada link di bawah, silahkan klik link dan download hasilnya\n👇👇👇👇👇👇👇👇👇\n\nJudul : ${res.data.title}\n\nLink: ${res.data.result}`;
-    conn.sendMessage(id, hasil ,MessageType.text);
+    conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
 })
 }
 if (text.includes('.samehadaku')){
@@ -2487,7 +2422,7 @@ const teks = text.replace(/.ytmp4 /, "")
 axios.get(`https://st4rz.herokuapp.com/api/ytv2?url=${teks}`).then((res) => {
     conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
     let hasil = `Audio telah tersedia pada link di bawah, silahkan klik link dan download hasilnya\n👇👇👇👇👇👇👇👇👇\n\nJudul : ${res.data.title}\n\nLink: ${res.data.result}`;
-    conn.sendMessage(id, hasil ,MessageType.text);
+    conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
 })
 }
 if (text.includes(".ping")){
@@ -2514,7 +2449,7 @@ if (text.includes(".alay")){
 	axios.get(`https://api.terhambar.com/bpk?kata=${alay}`).then ((res) =>
 		{ let hasil = `${res.data.text}`
                 conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
-		conn.sendMessage(id, hasil, MessageType.text)
+		conn.sendMessage(id, hasil, MessageType.text, { quoted: m })
 	})
 }
 
