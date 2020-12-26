@@ -439,9 +439,33 @@ if (text.includes('.randomhentai2')){
         })
     })
 }
+if (text.includes('.baguette')){
+  var teks = text.replace(/.baguette /, '')
+    axios.get(`https://api.computerfreaker.cf/v1/baguette`).then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
+            conn.sendMessage(id, buf, MessageType.image, { quoted: m })
+        })
+    })
+}
 if (text.includes('.animecrygif')){
   var teks = text.replace(/.animecrygif /, '')
     axios.get(`https://tobz-api.herokuapp.com/api/cry`).then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
+            conn.sendMessage(id, buf, MessageType.image, { quoted: m })
+        })
+    })
+}
+if (text.includes('.hentai2')){
+  var teks = text.replace(/.hentai2 /, '')
+    axios.get(`https://api.computerfreaker.cf/v1/dva`).then((res) => {
       imageToBase64(res.data.result)
         .then(
           (ress) => {
@@ -674,7 +698,7 @@ axios.get(`https://tobz-api.herokuapp.com/api/joox?q=${teks}`).then((res) => {
 })
 }if (text.includes(".artinama")){
 const teks = text.replace(/.artinama /, "")
-axios.get(`https://scrap.terhambar.com/nama?n=${teks}`).then((res) => {
+axios.get(`https://tobz-api.herokuapp.com/api/artinama?nama=${teks}`).then((res) => {
     let hasil = `ARTI NAMA MU ADALAH :\n\n*****************************\n${result}\n\n*****************************`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
