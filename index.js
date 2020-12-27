@@ -559,14 +559,6 @@ if (text.includes('.nsfwtrap')){
         })
     })
 }
-if (text.includes(".quotesanime")){
-const teks = text.replace(/.quotesanime /, "")
-axios.get(`https://animechanapi.xyz/api/quotes?anime=${teks}`).then((res) => {
-    let hasil = `quotesanime\n\n${res.data.quote} *character* \n${res.data.character} *anime* \n${res.data.anime}`;
-            conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
-    conn.sendMessage(id, hasil ,MessageType.text);
-})
-}
 if (text.includes('.tagme')) {
  var nomor = m.participant
  const options = {
@@ -683,9 +675,9 @@ axios.get(`https://tobz-api.herokuapp.com/api/kuso?q=${teks}`).then((res) => {
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
-if (text.includes(".jadwalshalat")){
+if (text.includes(".jadwalsholat")){
 const teks = text.replace(/.chord /, "")
-axios.get(`https://tobz-api.herokuapp.com/api/jadwalshalat?q=${teks}`).then((res) => {
+axios.get(`https://docs-jojo.herokuapp.com/api/jadwalsholat?daerah=${teks}`).then((res) => {
     let hasil = `*JADWAL SHALAT* :\n\nAshar : ${ashar}\nDzuhur : ${dzuhur}\nImsak : ${imsak}\nIsha : ${isha}\nMaghrib : ${maghrib}\nMidnight : ${midnight}\nSubuh : ${subuh}\nSunrise : ${sunrise}\nSunset : ${sunset}`;
     conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
 })
@@ -1000,6 +992,14 @@ conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', Mes
     conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
 })
 }
+if (text.includes(".quotesanime")){
+const teks = text.replace(/.quotesanime /, "")
+axios.get(`https://docs-jojo.herokuapp.com/api/quotesnime/random`).then((res) => {
+conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
+    let hasil = ` *Nih Quotes Nya Kak :)*\n\n _${res.data.result}_ `;
+    conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
+})
+}
 if (text.includes(".cersex1")){
 const teks = text.replace(/.cersex1 /, "")
 axios.get(`https://arugaz.herokuapp.com/api/cersex2`).then((res) => {
@@ -1018,7 +1018,7 @@ conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', Mes
 }
 if (text.includes(".quotes1")){
 const teks = text.replace(/.quotes1 /, "")
-axios.get(`https://arugaz.herokuapp.com/api/randomquotes`).then((res) => {
+axios.get(`https://tobz-api.herokuapp.com/api/randomquotes`).then((res) => {
 conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
     let hasil = ` *Nih Quotes Kak :)*\n\n *Author* : _${res.data.author}_ \n\n *Quotes* : _${res.data.quotes}_ `;
     conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
@@ -1042,7 +1042,7 @@ const animes =  axios.get(`https://mhankbarbar.herokuapp.com/api/otakudesu?q=${t
 }
 if (text.includes(".spamcall")){
 const teks = text.replace(/.spamcall /, "")
-axios.get(`https://arugaz.herokuapp.com/api/spamcall?no=${teks}`).then((res) => {
+axios.get(`https://docs-jojo.herokuapp.com/api/spamcall?no=${teks}`).then((res) => {
 	conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
     let hasil = ` *INFO SPAM CALL* \n\n _${res.data.logs}_`;
     conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
@@ -1072,7 +1072,7 @@ const say = (`*───❉ ITSMEIKY BOT ❉──*\n yeah dapat tulisan selamat
 }
 if (text.includes(".spamsms")){
 const teks = text.replace(/#spamsms /, "")
-axios.get(`https://arugaz.herokuapp.com/api/spamsms?no=${teks}&jum=20`).then((res) => {
+axios.get(`https://docs-jojo.herokuapp.com/api/spamsms?no=${teks}&jum=10`).then((res) => {
 	conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
     let hasil = ` *INFO SPAM SMS 20 PESAN* \n\n _${res.data.logs}_`;
     conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
@@ -2118,20 +2118,6 @@ axios.get(`https://api.banghasan.com/domain/hostsearch/${teks}`).then((res) => {
     conn.sendMessage(id, hasil ,MessageType.text);
   })
  }
-if (text.includes('.text3d')){
-  var teks = text.replace(/.text3d /, '')
-    axios.get('http://jojo-api-doc.herokuapp.com/api/text3d?text={text}')
-    .then((res) => {
-      imageToBase64(res.data.result)
-        .then(
-          (ress) => {
-            conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
-            var buf = Buffer.from(ress, 'base64')
-            conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
-            conn.sendMessage(id, buf, MessageType.image, { quoted: m })
-        })
-    })
-}
 if (text.includes('.waifu2')){
   var teks = text.replace(/.waifu2 /, '')
     axios.get(`https://docs-jojo.herokuapp.com/api/waifu2`).then((res) => {
@@ -2214,9 +2200,9 @@ axios.get(`https://docs-jojo.herokuapp.com/api/samehadaku?q=${teks}`).then((res)
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
-if (text.includes(".jadwaltvnow")){
+if (text.includes(".jadwalTV")){
 const teks = text.replace(/.jadwalTV /, "")
-axios.get(`https://api.haipbis.xyz/jadwaltvnow`).then((res) => {
+axios.get(`https://docs-jojo.herokuapp.com/api/jadwaltv?ch=${teks}`).then((res) => {
     conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
     let hasil = `Jam : ${res.data.jam}\n\n${res.data.jadwalTV}`;
     conn.sendMessage(id, hasil ,MessageType.text);
@@ -2321,7 +2307,7 @@ if (text.includes('.ssweb')){
 }
   if (text.includes('.waifu')){
   var teks = text.replace(/.waifu /, '')
-    axios.get('https://st4rz.herokuapp.com/api/waifu')
+    axios.get('https://docs-jojo.herokuapp.com/api/waifu2')
     .then((res) => {
       imageToBase64(res.data.image)
         .then(
@@ -2353,6 +2339,30 @@ if (text.includes('.samehadaku')){
 if (text.includes('.blackpink')){
   var teks = text.replace(/.blackpink /, '')
     axios.get(`https://docs-jojo.herokuapp.com/api/blackpink?text=${teks}`).then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
+            conn.sendMessage(id, buf, MessageType.image, { quoted: m })
+        })
+    })
+}
+if (text.includes('.text3d')){
+  var teks = text.replace(/.text3d /, '')
+    axios.get(`https://docs-jojo.herokuapp.com/api/text3d?text=${teks}`).then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
+            conn.sendMessage(id, buf, MessageType.image, { quoted: m })
+        })
+    })
+}
+if (text.includes('.pornhub')){
+  var teks = text.replace(/.pornhub /, '')
+    axios.get(`https://docs-jojo.herokuapp.com/api/phblogo?text1=${teks}&text2=${teks}`).then((res) => {
       imageToBase64(res.data.result)
         .then(
           (ress) => {
