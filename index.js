@@ -1191,7 +1191,7 @@ conn.sendMessage(id, titoe, MessageType.text);
 
 if (text.includes(".fb")){
 const teks = text.replace(/.fb /, "")
-axios.get(`https://arugaz.herokuapp.com/api/fb?url=${teks}`).then((res) => {
+axios.get(`https://tobz-api.herokuapp.com/api/facebook?url=${teks}`).then((res) => {
     let hasil = `Download sendiri melalui link dibawah ya, takut servernya down xixi..\n\nJudul: ${res.data.title}\n\nSize: ${res.data.filesize}\n\nLink: ${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
@@ -1896,9 +1896,9 @@ if (text.includes(".pokemon"))
  MessageType.text);
   });
   }
-  else if (text.includes("!pasangan ")) {
+  else if (text.includes(".pasangan ")) {
     const request = require('request');
-    var gh = text.split("!pasangan ")[1];
+    var gh = text.split(".pasangan ")[1];
     var namamu = gh.split("&")[0];
     var pasangan = gh.split("&")[1];
     request.get({
@@ -1925,7 +1925,7 @@ if (text.includes(".pokemon"))
 
 
 ❉──────────❉
-    `, MessageType.text);
+    `, MessageType.text, { quoted: m });
   });
   }
    if (text.includes(".foto cewek"))
@@ -2320,8 +2320,8 @@ if (text.includes('.ssweb')){
 }  
 if (text.includes(".ytmp3")){
 const teks = text.replace(/.ytmp3 /, "")
-axios.get(`https://st4rz.herokuapp.com/api/yta2?url=${teks}`).then((res) => {
-    let hasil = `Audio telah tersedia pada link di bawah, silahkan klik link dan download hasilnya\n👇👇👇👇👇👇👇👇👇\n\nJudul : ${res.data.title}\n\nLink: ${res.data.result}`;
+axios.get(`https://tobz-api.herokuapp.com/api/yta?url=${teks}`).then((res) => {
+    let hasil = `Audio telah tersedia pada link di bawah, silahkan klik link dan download hasilnya\n👇👇👇👇👇👇👇👇👇\n\nJudul : ${res.data.title}\n\nLink: ${res.data.result}\n\nThumb : ${res.data.thumb}\n\nFile Size : ${res.data.filesize}\n\nExt : ${res.data.ext}`;
     conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
 })
 }
@@ -2453,7 +2453,7 @@ if (text.includes('.memecreate')){
 }
 if (text.includes(".ytmp4")){
 const teks = text.replace(/.ytmp4 /, "")
-axios.get(`https://st4rz.herokuapp.com/api/ytv2?url=${teks}`).then((res) => {
+axios.get(`https://tobz-api.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
     conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
     let hasil = `Audio telah tersedia pada link di bawah, silahkan klik link dan download hasilnya\n👇👇👇👇👇👇👇👇👇\n\nJudul : ${res.data.title}\n\nLink: ${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
