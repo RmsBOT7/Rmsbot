@@ -211,9 +211,9 @@ conn.sendMessage(id, 'wa.me/+6281281872699' ,MessageType.text, { quoted: m });
 else if (text == '.owner'){
 conn.sendMessage(id, 'wa.me/+6281281872699' ,MessageType.text, { quoted: m });
 }
-//else if (text == '.groupbot'){
-//conn.sendMessage(id, 'https://chat.whatsapp.com/Hc3WJvWDziF3u63gCeCtI7' ,MessageType.text, { quoted: m });
-//}
+else if (text == '.groupbot'){
+conn.sendMessage(id, 'Nih Bro Jangan Lupa Join https://chat.whatsapp.com/Hc3WJvWDziF3u63gCeCtI7' ,MessageType.text, { quoted: m });
+}
 else if (text == '.tools1'){
 conn.sendMessage(id, ' *Menampilkan Fitur tools1!!!* ' ,MessageType.text);
 }
