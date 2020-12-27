@@ -487,6 +487,18 @@ if (text.includes('.nsfwblowjob')){
         })
     })
 }
+if (text.includes('.fotoanime2')){
+  var teks = text.replace(/.fotoanime /, '')
+    axios.get(`https://tobz-api.herokuapp.com/api/randomanime`).then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
+            conn.sendMessage(id, buf, MessageType.image, { quoted: m })
+        })
+    })
+}
 if (text.includes('.hentai')){
   var teks = text.replace(/.hentai /, '')
     axios.get(`https://tobz-api.herokuapp.com/api/hentai`).then((res) => {
@@ -2325,6 +2337,20 @@ axios.get(`https://tobz-api.herokuapp.com/api/yta?url=${teks}`).then((res) => {
     conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
 })
 }
+if (text.includes(".hastagtwt")){
+const teks = text.replace(/.hastagtwtw /, "")
+axios.get(`https://tobz-api.herokuapp.com/api/yta?url=${teks}`).then((res) => {
+    let hasil = `Nih Gan Hastag Trending Twiter Nya \n\nHastag : ${res.data.hastag}\n\nLink: ${res.data.link}\n\nRank : ${res.data.rank}\n\nTweet : ${res.data.tweet}`;
+    conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
+})
+}
+if (text.includes(".mediafire")){
+const teks = text.replace(/.mediafire /, "")
+axios.get(`https://docs-jojo.herokuapp.com/api/mediafire?url=${teks}`).then((res) => {
+    let hasil = `Nih Bro Information Nya \n\nDesc : ${res.data.desc}\n\nFile Name: ${res.data.filename}\n\nFile Size : ${res.data.filesize}\n\nFile Type : ${res.data.filetype}\n\nUploaded : ${res.data.uploaded}\n\nURL : ${res.data.url}`;
+    conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
+})
+}
 if (text.includes('.samehadaku')){
   var teks = text.replace(/.samehadaku /, '')
     axios.get(`https://docs-jojo.herokuapp.com/api/samehadaku?q=${teks}`).then((res) => {
@@ -2455,7 +2481,7 @@ if (text.includes(".ytmp4")){
 const teks = text.replace(/.ytmp4 /, "")
 axios.get(`https://tobz-api.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
     conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
-    let hasil = `Audio telah tersedia pada link di bawah, silahkan klik link dan download hasilnya\n👇👇👇👇👇👇👇👇👇\n\nJudul : ${res.data.title}\n\nLink: ${res.data.result}`;
+    let hasil = `Video telah tersedia pada link di bawah, silahkan klik link dan download hasilnya\n👇👇👇👇👇👇👇👇👇\n\nJudul : ${res.data.title}\n\nLink: ${res.data.result}\n\nThumb : ${res.data.thumb}\n\nFile Size : ${res.data.filesize}\n\nExt : ${res.data.ext}\n\nResolution : ${res.data.resolution}`;
     conn.sendMessage(id, hasil ,MessageType.text, { quoted: m });
 })
 }
